@@ -65,6 +65,7 @@ def HeadList(S):
 
 # KolomKe: ListOfList, integer >= 0 -> list
 # {KolomKe(inv, n) menghasilkan list ke-n dari inv (indeks mulai 0).}
+# REALISASI
 def KolomKe(inv: ListOfList, n: int) -> list:
     """KolomKe(inv, n) menghasilkan list ke-n dari inv (indeks mulai 0)."""
     if IsAtom(FirstList(inv)):
@@ -109,6 +110,7 @@ def NilaiItem(inv):
 # TailInv: ListOfList tidak kosong -> ListOfList
 # {TailInv(inv) menghasilkan inv di mana setiap list-nya dibuang elemen pertamanya.
 #  Jumlah list di dalam inv bebas.}
+# REALISASI
 def TailInv(inv: ListOfList) -> ListOfList:
     """TailInv(inv) menghasilkan inv di mana setiap list-nya dibuang elemen pertamanya.
     Jumlah list di dalam inv bebas."""

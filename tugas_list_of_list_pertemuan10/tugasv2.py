@@ -1,3 +1,5 @@
+# Nama Kasus: Inventaris Game RPG
+
 # Anggota 1:
 # Nama: Rasya Nabhan Alfathoni
 # NIM: 24060126130082
@@ -33,11 +35,41 @@ def KonsLi(S, L):
 
 
 # DEFINISI DAN SPESIFIKASI SELEKTOR
+# FirstList: list of list tidak kosong -> elemen (atom atau list)
+# {FirstList(S) menghasilkan elemen pertama S.}
+# REALISASI
+def FirstList(S):
+    """FirstList(S) menghasilkan elemen pertama S."""
+    return S[0]
+ 
+# LastList: list of list tidak kosong -> elemen (atom atau list)
+# {LastList(S) menghasilkan elemen terakhir S.}
+# REALISASI
+def LastList(S):
+    """LastList(S) menghasilkan elemen terakhir S."""
+    return S[-1]
+ 
+# TailList: list of list tidak kosong -> list of list
+# {TailList(S) menghasilkan S tanpa elemen pertamanya.}
+# REALISASI
+def TailList(S):
+    """TailList(S) menghasilkan S tanpa elemen pertamanya."""
+    return S[1:]
+ 
+# HeadList: list of list tidak kosong -> list of list
+# {HeadList(S) menghasilkan S tanpa elemen terakhirnya.}
+# REALISASI
+def HeadList(S):
+    """HeadList(S) menghasilkan S tanpa elemen terakhirnya."""
+    return S[:-1]
+
 # KolomKe: ListOfList, integer >= 0 -> list
 # {KolomKe(inv, n) menghasilkan list ke-n dari inv (indeks mulai 0).}
 def KolomKe(inv: ListOfList, n: int) -> list:
     """KolomKe(inv, n) menghasilkan list ke-n dari inv (indeks mulai 0)."""
-    if n == 0:
+    if IsAtom(FirstList(inv)):
+        return KolomKe(TailList(inv), n)
+    elif n == 0:
         return FirstList(inv)
     else:
         return KolomKe(TailList(inv), n - 1)
@@ -74,34 +106,6 @@ def NilaiItem(inv):
     List tipe datanya Integer."""
     return KolomKe(inv, 3)
 
-# FirstList: list of list tidak kosong -> elemen (atom atau list)
-# {FirstList(S) menghasilkan elemen pertama S.}
-# REALISASI
-def FirstList(S):
-    """FirstList(S) menghasilkan elemen pertama S."""
-    return S[0]
- 
-# LastList: list of list tidak kosong -> elemen (atom atau list)
-# {LastList(S) menghasilkan elemen terakhir S.}
-# REALISASI
-def LastList(S):
-    """LastList(S) menghasilkan elemen terakhir S."""
-    return S[-1]
- 
-# TailList: list of list tidak kosong -> list of list
-# {TailList(S) menghasilkan S tanpa elemen pertamanya.}
-# REALISASI
-def TailList(S):
-    """TailList(S) menghasilkan S tanpa elemen pertamanya."""
-    return S[1:]
- 
-# HeadList: list of list tidak kosong -> list of list
-# {HeadList(S) menghasilkan S tanpa elemen terakhirnya.}
-# REALISASI
-def HeadList(S):
-    """HeadList(S) menghasilkan S tanpa elemen terakhirnya."""
-    return S[:-1]
-
 # TailInv: ListOfList tidak kosong -> ListOfList
 # {TailInv(inv) menghasilkan inv di mana setiap list-nya dibuang elemen pertamanya.
 #  Jumlah list di dalam inv bebas.}
@@ -110,6 +114,8 @@ def TailInv(inv: ListOfList) -> ListOfList:
     Jumlah list di dalam inv bebas."""
     if IsEmpty(inv):
         return []
+    elif IsAtom(FirstList(inv)):
+        return TailInv(TailList(inv))
     else:
         return KonsLo(TailList(FirstList(inv)), TailInv(TailList(inv)))
 

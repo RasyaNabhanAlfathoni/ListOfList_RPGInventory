@@ -211,16 +211,6 @@ def TotalItem(inv: ListOfList) -> int:
     else:
         return TotalElmt(FirstList(inv)) + TotalItem(TailList(inv))
 
-# TotalNilai: ListOfList -> int
-# {TotalItem(inv) menjumlahkan nilai dari item di dalam inventory}
-# REALISASI
-def TotalNilai(inv: ListOfList) -> int:
-    """TotalItem(inv) menjumlahkan nilai dari seluruh item di dalam inventory"""
-    if IsInventarisKosong(inv):
-        return 0
-    else:
-        return TotalElmt(FirstList(inv)) + TotalNilai(TailList(inv))
-
 # FilterItem: ListOfList, String -> List of String
 # {FilterItem (inv, nama) Menghasilkan list nama item yang namanya sama dengan parameter nama.
 #   Jika tidak akan menghasilkan list kosong}

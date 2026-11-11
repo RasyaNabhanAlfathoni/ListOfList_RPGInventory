@@ -88,6 +88,15 @@ def FirstElmt(L: list) -> int:
     """FirstElmt(L) mengembalikan elemen pertama dari L."""
     return L[0]
 
+# Tail(L): List tidak kosong -> List
+# {Tail(L) mengembalikan list L tanpa elemen pertama
+#   dari L; dapat menghasilkan list kosong.}
+# Realisasi:
+def Tail(L: list) -> list:
+    """Tail(L) mengembalikan list L tanpa elemen pertama
+    dari L; dapat menghasilkan list kosong."""
+    return L[1:]
+
 
 # DEFINISI DAN SPESIFIKASI PREDIKTOR
 # IsEmpty: list of list -> boolean
@@ -121,7 +130,7 @@ def IsMember(X: int, L: list) -> bool:
     elif X == FirstElmt(L):
         return True
     else:
-        return IsMember(X, TailList(L))
+        return IsMember(X, Tail(L))
 
 # IsInventarisKosong: ListOfList -> boolean
 # {IsInventarisKosong(inv) Memeriksa apakah inventory kosong atau tidak, True jika kosong, False jika ada isi inventory.}
@@ -178,9 +187,9 @@ def JumElmtList(L: list, nama: str) -> int:
     if IsEmpty(L):
         return 0
     elif FirstList(L) == nama:
-        return 1 + JumElmtList(TailList(L), nama)
+        return 1 + JumElmtList(Tail(L), nama)
     else:
-        return JumElmtList(TailList(L), nama)
+        return JumElmtList(Tail(L), nama)
  
 # JumElmtListOfList: ListOfList, string -> integer
 # {JumElmtListOfList(S, nama) menghasilkan banyak kemunculan elemen (nama) di list of list.}
